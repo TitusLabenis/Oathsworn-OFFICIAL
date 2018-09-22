@@ -11,7 +11,7 @@ public class PlayerAttack : EnemyDetection {
 
     private float speed = 100f;
 
-    private bool hasShield = true;
+    public bool hasShield = false;
 
     public int swordStatus = IDLE;
 
@@ -32,6 +32,10 @@ public class PlayerAttack : EnemyDetection {
     private GameObject playerShield;
 
     void Update () {
+
+        hasShield = ItemPickup.hasShield;
+
+        //----------COMBAT MECHANICS-----------
 		if (Input.GetMouseButtonDown(LEFTCLICK) && swordStatus == IDLE)
         {
             StartCoroutine(SwingSwordFunction()); //attacks when lmouse is clicked

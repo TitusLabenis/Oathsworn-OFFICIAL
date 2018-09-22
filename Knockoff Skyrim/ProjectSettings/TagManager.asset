@@ -8,6 +8,7 @@ TagManager:
   - EnemySword
   - Enemy
   - PlayerShield
+  - ShieldPickup
   layers:
   - Default
   - TransparentFX

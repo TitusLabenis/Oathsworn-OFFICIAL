@@ -66,6 +66,7 @@
     <Compile Include="Assets\_Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\_Scripts\HeadBob.cs" />
     <Compile Include="Assets\_Scripts\MouseLook.cs" />
+    <Compile Include="Assets\_Scripts\Player\ItemPickup.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerAttack.cs" />
     <Compile Include="Assets\_Scripts\Player\PlayerDeath.cs" />
     <Compile Include="Assets\_Scripts\RigidbodyFirstPersonController.cs" />
