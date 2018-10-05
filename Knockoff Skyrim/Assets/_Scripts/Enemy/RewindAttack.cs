@@ -10,6 +10,8 @@ public class RewindAttack : PlayerAttack {
     [SerializeField]
     private Transform sword; //the current position of the enemy's sword
 
+    private int listLength;
+
     private bool isRewinding = false; //the enemy isn't currently retracting his sword
 
     private const float BLOCKING = 4; //the sword stance where the enemy would be blocking
@@ -21,18 +23,33 @@ public class RewindAttack : PlayerAttack {
         positions = new List<Vector3>(); //creates the list
     }
 
+    private void Update()
+    {
+        
+
+        listLength = positions.Count;
+        if (sword == startPos)
+        {
+            Debug.Log("Done Rewinding");
+            isRewinding = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("PlayerSword")  || collision.gameObject.CompareTag("PlayerShield") && swordStatus == BLOCKING)
+        if(collision.gameObject.CompareTag("PlayerSword") && swordStatus == BLOCKING)
         {
             StartRewind(); //begin drawing back if the sword has been blocked
             Debug.Log("Enemy Attack Blocked");
         }
 
-        if (sword == startPos)
+        else if (collision.gameObject.CompareTag("PlayerShield") && swordStatus == BLOCKING)
         {
-            StopRewind(); //stop rewinding if the sword is back in the starting place
+            StartRewind(); //begin drawing back if the sword has been blocked
+            Debug.Log("Enemy Attack Blocked");
         }
+
+
     }
 
     void StartRewind()
@@ -43,34 +60,35 @@ public class RewindAttack : PlayerAttack {
         
     }
 
-    void StopRewind()
-    {
-        //*code*
-    }
-
     private void FixedUpdate()
     {
         if (isRewinding == true)
         {
-            Rewind();
+            StartCoroutine("Rewind");
+            StopCoroutine("Record");
         }
 
-        else
+        else if (isRewinding == false)
         {
             //record sword places if it isn't currently rewinding
-            Record();
+            StartCoroutine("Record");
+            Debug.Log("Recording");
+            StopCoroutine("Rewind");
         }
     }
 
     private void Rewind()
     {
-        //makes it so there is only ever one vector3 in the list
-        transform.position = positions[0];
-        positions.RemoveAt(0);
+        //makes it so the vector3 at the top is always the newest position
+        transform.position = positions[listLength-1];
+        positions.RemoveAt(listLength);
+        Debug.Log("Rewinding");
     }
 
     private void Record()
     {
-        positions.Insert(0, transform.position);
+        positions.Add(transform.position);
+        Debug.Log("Array 1:" + positions[0]);
+        Debug.Log("Array 2:" + positions[1]);
     }
 }
