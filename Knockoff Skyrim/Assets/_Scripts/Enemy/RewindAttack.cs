@@ -14,7 +14,7 @@ public class RewindAttack : PlayerAttack {
 
     private bool isRewinding = false; //the enemy isn't currently retracting his sword
 
-    private const float BLOCKING = 4; //the sword stance where the enemy would be blocking
+    private const int BLOCKING = 4; //the sword stance where the enemy would be blocking
 
     List<Vector3> positions; //list of places where the enemy's sword has been
 
@@ -32,20 +32,21 @@ public class RewindAttack : PlayerAttack {
         {
             Debug.Log("Done Rewinding");
             isRewinding = false;
+            StopCoroutine("StartRewind");
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("PlayerSword") && swordStatus == BLOCKING)
+        if(collision.gameObject.CompareTag("PlayerSword"))
         {
-            StartRewind(); //begin drawing back if the sword has been blocked
+            StartCoroutine("StartRewind"); //begin drawing back if the sword has been blocked
             Debug.Log("Enemy Attack Blocked");
         }
 
-        else if (collision.gameObject.CompareTag("PlayerShield") && swordStatus == BLOCKING)
+        else if (collision.gameObject.CompareTag("PlayerShield"))
         {
-            StartRewind(); //begin drawing back if the sword has been blocked
+            StartCoroutine("StartRewind"); //begin drawing back if the sword has been blocked
             Debug.Log("Enemy Attack Blocked");
         }
 
@@ -88,7 +89,6 @@ public class RewindAttack : PlayerAttack {
     private void Record()
     {
         positions.Add(transform.position);
-        Debug.Log("Array 1:" + positions[0]);
-        Debug.Log("Array 2:" + positions[1]);
+
     }
 }
