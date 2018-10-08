@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knockoff Skyrim", "Assembly-CSharp.csproj", "{B932F6F3-D31E-1A0F-1453-225D3A27C545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{B932F6F3-D31E-1A0F-1453-225D3A27C545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knockoff Skyrim", "Assembly-CSharp-Editor.csproj", "{D05DAEEA-256D-2A72-0CA8-7073B42577D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{D05DAEEA-256D-2A72-0CA8-7073B42577D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
